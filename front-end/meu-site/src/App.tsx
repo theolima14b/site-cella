@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Header from "./components/header.tsx";
+import UserList from "./components/userList.tsx";
+import Footer from "./components/footer.tsx";
+
+const array = [
+  {
+    name: "Giuseppe",
+    lastName: "Cadura",
+    age: 32,
+    isSmoker: true,
+  },
+  {
+    name: "Tchumbi",
+    lastName: "Lao",
+    age: 35,
+    isSmoker: true,
+  },
+  {
+    name: "José",
+    lastName: "Picamoles",
+    age: 68,
+    isSmoker: false,
+  }
+]
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Hello World!</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      < Header />
+      <p>Your userlist is:</p>
+      <ul>
+        {array.map((user) => (
+          < UserList
+            key={user.name}
+            user={user}
+          />
+        ))}
+      </ul>
+      < Footer />
+    </div>
+  );
 
+}
 export default App
